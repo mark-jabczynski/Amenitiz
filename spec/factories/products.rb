@@ -2,9 +2,8 @@
 
 FactoryBot.define do
   factory :product do
-    code { 'MyString' }
-    name { 'MyString' }
-    discount_rule { nil }
-    price_cents { 1 }
+    code { 'CF1' }
+    name { 'Coffee' }
+    price_cents { 11_23 }
   end
 end

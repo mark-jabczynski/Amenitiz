@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :order do
-    basket { '' }
-    total_price_cents { 1 }
-    discount_price { 1 }
-    uuid { 'MyString' }
+    basket { [{ GR1: 2 }] }
+    total_price_cents { 2 }
+    discount { 1 }
+    uuid { SecureRandom.uuid }
   end
 end

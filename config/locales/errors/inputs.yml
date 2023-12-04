@@ -1,0 +1,6 @@
+en:
+  dry_validation:
+    errors:
+      order:
+        rules:
+          product_record_not_found: 'Product code not found.'
