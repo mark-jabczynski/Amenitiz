@@ -62,4 +62,17 @@ RSpec.describe Orders::AddProduct::EntryPoint do
       )
     end
   end
+
+  context 'when params are invalud' do
+    subject { described_class.call(order_uuid: order&.uuid, product_code: product&.code, quantity: quantity) }
+
+    let(:quantity) { -1 }
+    let(:product) { build(:product) }
+
+    it 'raises an error' do
+      expect { subject }.to raise_error(
+        ValidationError, { quantity: ['quantity must be greater than 0'], nil => ['Product code not found.'] }.to_s
+      )
+    end
+  end
 end
