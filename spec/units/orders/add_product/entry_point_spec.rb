@@ -14,14 +14,15 @@ RSpec.describe Orders::AddProduct::EntryPoint do
         an_object_having_attributes(
           uuid: an_instance_of(String),
           total_price: 1.to_money,
-          basket: { product.code => 1 }
+          basket: { product.code => 1 },
+          discount: 0.to_money
         )
       )
     )
   end
 
   context 'when order exists' do
-    let(:order) { create(:order, total_price: 1, basket: { product.code => 1 }) }
+    let(:order) { create(:order, discount: 1, total_price: 1, basket: { product.code => 1 }) }
 
     it 'updates the order' do
       expect { subject }.to change(Queries::Order, :all)
@@ -30,7 +31,8 @@ RSpec.describe Orders::AddProduct::EntryPoint do
             an_object_having_attributes(
               uuid: order.uuid,
               total_price: 1.to_money,
-              basket: { product.code => 1 }
+              basket: { product.code => 1 },
+              discount: 1.to_money
             )
           )
         ).to(
@@ -38,7 +40,8 @@ RSpec.describe Orders::AddProduct::EntryPoint do
             an_object_having_attributes(
               uuid: order.uuid,
               total_price: 2.to_money,
-              basket: { product.code => 2 }
+              basket: { product.code => 2 },
+              discount: 0.to_money
             )
           )
         )
@@ -56,7 +59,8 @@ RSpec.describe Orders::AddProduct::EntryPoint do
           an_object_having_attributes(
             uuid: an_instance_of(String),
             total_price: 2.to_money,
-            basket: { product.code => quantity }
+            basket: { product.code => quantity },
+            discount: 0.to_money
           )
         )
       )

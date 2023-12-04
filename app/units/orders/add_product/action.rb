@@ -26,12 +26,12 @@ module Orders
       end
 
       def update_total_price(order)
+        # TODO: move to a separate subaction and replace += with =
         order.total_price += product.price * quantity
       end
 
       def update_discount(order)
-        # TODO: Update discount
-        warn 'Not implemented yet'
+        order.discount = Subactions::UpdateDiscount.new(order).call
       end
 
       def quantity
