@@ -19,7 +19,7 @@ Product.create! [
 ] unless Product.exists?
 
 Order.create! [
-  { basket: [{ GR1: 2 }], total_price_cents: 3_11, discount_cents: 3_11, uuid: SecureRandom.uuid },
-  { basket: [{ SR1: 3, GR1: 1 }], total_price_cents: 16_61, discount_cents: 1_50, uuid: SecureRandom.uuid },
-  { basket: [{ SR1: 1, GR1: 1, CF1: 3 }], total_price_cents: 30_57, discount_cents: 11_23, uuid: SecureRandom.uuid }
+  { basket: { GR1: 2 }, total_price_cents: 3_11, discount_cents: 3_11, uuid: SecureRandom.uuid },
+  { basket: { SR1: 3, GR1: 1 }, total_price_cents: 16_61, discount_cents: 1_50, uuid: SecureRandom.uuid },
+  { basket: { SR1: 1, GR1: 1, CF1: 3 }, total_price_cents: 30_57, discount_cents: 11_23, uuid: SecureRandom.uuid }
 ] unless Order.exists?
