@@ -10,8 +10,8 @@ module Orders
       def call
         order.tap do |o|
           add_product_to_the_basket(o)
-          update_total_price(o)
           update_discount(o)
+          update_total_price(o)
         end
 
         Command.save(order)
@@ -26,8 +26,7 @@ module Orders
       end
 
       def update_total_price(order)
-        # TODO: move to a separate subaction and replace += with =
-        order.total_price += product.price * quantity
+        order.total_price = Subactions::UpdateTotalPrice.new(order).call
       end
 
       def update_discount(order)
