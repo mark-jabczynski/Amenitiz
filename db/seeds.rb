@@ -13,13 +13,13 @@ DiscountRule.create! [
 ] unless DiscountRule.exists?
 
 Product.create! [
-  { code: 'GR1', name: 'Green Tea', price: 3_11, discount_rule: DiscountRule.buy_one_get_one_free.take },
-  { code: 'SR1', name: 'Strawberries', price: 5_00, discount_rule: DiscountRule.buy_three_or_more_strawberries.take },
-  { code: 'CF1', name: 'Coffee', price: 11_23, discount_rule: DiscountRule.buy_three_or_more_strawberries.take }
+  { code: 'GR1', name: 'Green Tea', price: 3.11, discount_rule: DiscountRule.buy_one_get_one_free.take },
+  { code: 'SR1', name: 'Strawberries', price: 5.00, discount_rule: DiscountRule.buy_three_or_more_strawberries.take },
+  { code: 'CF1', name: 'Coffee', price: 11.23, discount_rule: DiscountRule.buy_three_or_more_strawberries.take }
 ] unless Product.exists?
 
 Order.create! [
-  { basket: { GR1: 2 }, total_price_cents: 3_11, discount_cents: 3_11, uuid: SecureRandom.uuid },
-  { basket: { SR1: 3, GR1: 1 }, total_price_cents: 16_61, discount_cents: 1_50, uuid: SecureRandom.uuid },
-  { basket: { SR1: 1, GR1: 1, CF1: 3 }, total_price_cents: 30_57, discount_cents: 11_23, uuid: SecureRandom.uuid }
+  { basket: { GR1: 2 }, total_price: 3.11, discount: 3.11, uuid: SecureRandom.uuid },
+  { basket: { SR1: 3, GR1: 1 }, total_price: 16.61, discount: 1.50, uuid: SecureRandom.uuid },
+  { basket: { SR1: 1, GR1: 1, CF1: 3 }, total_price: 30.57, discount: 11.23, uuid: SecureRandom.uuid }
 ] unless Order.exists?
