@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Orders</h1>
+
+<div id="orders">
+  <% @orders.each do |order| %>
+    <p><%= order.uuid %></p>
+    <p><%= order.basket %></p>
+    <p><%= order.created_at %></p>
+    <p><%= order.updated_at %></p>
+    <p>
+      <%= link_to "Show this order", add_product_path(order.uuid, uuid: params[:uuid]) %>
+    </p>
+  <% end %>
+</div>

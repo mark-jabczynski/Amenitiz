@@ -11,9 +11,9 @@
       <td><%= @product.code %></td>
       <td><%= @product.name %></td>
       <td><%= "#{@product.price_currency} #{@product.price}" %></td>
-      <td><%= link_to 'Add', '#' %></td>
+      <td><%= link_to 'Add', add_product_path(product_code: @product.code, uuid: params[:uuid]), data: { turbo_method: :post } %></td>
     </tr>
   </tbody>
 </table>
 
-<%= link_to 'Products', products_path %>
+<%= link_to 'Products', products_path(uuid: params[:uuid]) %>
