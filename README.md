@@ -29,3 +29,11 @@ I didn't care about Frontend side because it looks like u don't care too.
 If u have any additional wishes to do here sth I don't mind.
 
 You can run `rails s` and because there are not many views it is easy to navigate. The tests are there so it should be easy to play around.
+
+## Code explanation
+
+I was using units as containers for service objects. We should use them with Facade pattern and injections
+- Inputs were created for validations
+- subactions are service objects for sidework
+- action is the main service
+- query objects created for queries, database agnostic
