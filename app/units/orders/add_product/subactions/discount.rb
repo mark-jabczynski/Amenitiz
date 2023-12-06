@@ -3,7 +3,7 @@
 module Orders
   module AddProduct
     module Subactions
-      class UpdateDiscount
+      class Discount
         def initialize(order)
           @order = order
         end
@@ -40,7 +40,7 @@ module Orders
 
         # If you buy 3 or more strawberries, the price should drop to 4.50€.
         def buy_three_or_more_strawberries(product)
-          (product.price * order.basket[product.code]) - (4.50.to_money * order.basket[product.code])
+          [(product.price * order.basket[product.code]) - (4.5 * order.basket[product.code]).to_money, 0.to_money].max
         end
 
         def buy_three_or_more_strawberries?(product)
@@ -50,8 +50,7 @@ module Orders
 
         # If you buy 3 or more coffees, the price of all coffees should drop to 2/3 of the original price.
         def buy_three_or_more_coffees(product)
-          (product.price * order.basket[product.code]) -
-            (product.price.to_d * 2 / 3 * order.basket[product.code]).to_money
+          (product.price * order.basket[product.code]) / 3.0
         end
 
         def buy_three_or_more_coffees?(product)

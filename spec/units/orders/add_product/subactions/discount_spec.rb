@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Orders::AddProduct::Subactions::UpdateDiscount do
+RSpec.describe Orders::AddProduct::Subactions::Discount do
   subject { described_class.new(order).call }
 
   context 'when order has no discount' do
@@ -29,6 +29,12 @@ RSpec.describe Orders::AddProduct::Subactions::UpdateDiscount do
     let(:order) { create(:order, discount: 0, basket: { product.code => 4 }) }
 
     it { is_expected.to eq(2.00.to_money) }
+
+    context 'when price of a product is less than 4.50' do
+      let(:product) { create(:product, price: 4.00, discount_rule: discount) }
+
+      it { is_expected.to eq(0.to_money) }
+    end
   end
 
   context 'when order has buy_three_or_more_coffees discount' do

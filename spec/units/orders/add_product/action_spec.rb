@@ -12,27 +12,27 @@ RSpec.describe Orders::AddProduct::Action do
     Orders::AddProduct::Inputs.new(params: { uuid: order.uuid, product_code: product.code, quantity: 1 }).tap(&:call)
   end
 
-  let(:update_discount_class) { Orders::AddProduct::Subactions::UpdateDiscount }
-  let(:update_discount_double) { instance_double(update_discount_class) }
+  let(:discount_class) { Orders::AddProduct::Subactions::Discount }
+  let(:discount_double) { instance_double(discount_class) }
 
-  let(:update_total_price_class) { Orders::AddProduct::Subactions::UpdateTotalPrice }
-  let(:update_total_price_double) { instance_double(update_total_price_class) }
+  let(:total_price_class) { Orders::AddProduct::Subactions::TotalPrice }
+  let(:total_price_double) { instance_double(total_price_class) }
 
   before do
-    allow(update_discount_class).to receive(:new).with(order).and_return(update_discount_double)
-    allow(update_total_price_class).to receive(:new).with(order).and_return(update_total_price_double)
+    allow(discount_class).to receive(:new).with(order).and_return(discount_double)
+    allow(total_price_class).to receive(:new).with(order).and_return(total_price_double)
   end
 
   it 'calls subactions' do
-    expect(update_discount_double).to receive(:call)
-    expect(update_total_price_double).to receive(:call)
+    expect(discount_double).to receive(:call)
+    expect(total_price_double).to receive(:call)
 
     subject
   end
 
   it 'updates total_price and discount' do
-    expect(update_discount_double).to receive(:call).and_return(11.to_money)
-    expect(update_total_price_double).to receive(:call).and_return(12.to_money)
+    expect(discount_double).to receive(:call).and_return(11.to_money)
+    expect(total_price_double).to receive(:call).and_return(12.to_money)
 
     expect { subject }.to change { order.reload.discount }
       .from(0.to_money)

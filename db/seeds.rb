@@ -15,7 +15,7 @@ DiscountRule.create! [
 Product.create! [
   { code: 'GR1', name: 'Green Tea', price: 3.11, discount_rule: DiscountRule.buy_one_get_one_free.take },
   { code: 'SR1', name: 'Strawberries', price: 5.00, discount_rule: DiscountRule.buy_three_or_more_strawberries.take },
-  { code: 'CF1', name: 'Coffee', price: 11.23, discount_rule: DiscountRule.buy_three_or_more_strawberries.take }
+  { code: 'CF1', name: 'Coffee', price: 11.23, discount_rule: DiscountRule.buy_three_or_more_coffees.take }
 ] unless Product.exists?
 
 Order.create! [

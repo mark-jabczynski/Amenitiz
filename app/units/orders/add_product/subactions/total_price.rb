@@ -3,7 +3,7 @@
 module Orders
   module AddProduct
     module Subactions
-      class UpdateTotalPrice
+      class TotalPrice
         def initialize(order)
           @order = order
         end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Orders::AddProduct::Subactions::UpdateTotalPrice do
+RSpec.describe Orders::AddProduct::Subactions::TotalPrice do
   subject { described_class.new(order).call }
 
   context 'when order has no discount' do

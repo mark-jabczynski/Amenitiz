@@ -26,11 +26,11 @@ module Orders
       end
 
       def update_total_price(order)
-        order.total_price = Subactions::UpdateTotalPrice.new(order).call
+        order.total_price = Subactions::TotalPrice.new(order).call
       end
 
       def update_discount(order)
-        order.discount = Subactions::UpdateDiscount.new(order).call
+        order.discount = Subactions::Discount.new(order).call
       end
 
       def quantity
