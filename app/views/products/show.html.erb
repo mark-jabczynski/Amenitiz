@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @product.code %></td>
+      <td><%= @product.name %></td>
+      <td><%= "#{@product.price_currency} #{@product.price}" %></td>
+      <td><%= link_to 'Add', '#' %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Products', products_path %>

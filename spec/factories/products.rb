@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :product do
-    code { 'CF1' }
+    sequence(:code) { |n| "CF#{n}" }
     name { 'Coffee' }
     price_cents { 11_23 }
   end
