@@ -9,7 +9,7 @@
     <p><%= order.created_at %></p>
     <p><%= order.updated_at %></p>
     <p>
-      <%= link_to "Show this order", add_product_path(order.uuid, uuid: params[:uuid]) %>
+      <%= link_to "Show this order", order_path(order.uuid) %>
     </p>
   <% end %>
 </div>
