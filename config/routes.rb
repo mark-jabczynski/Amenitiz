@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   root 'products#index'
 
   resources :products, only: %i[index show], param: :code
+
+  post :add_product, to: 'orders#add_product', path: 'orders/add_product'
+  resources :orders, only: %i[index show], param: :uuid
 end

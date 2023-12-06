@@ -1,0 +1,38 @@
+<p style="color: green"><%= notice %></p>
+
+<h2>Order Details</h2>
+<div id="order">
+  <p><%= "#{@order.discount_currency} #{@order.discount}" %></p>
+  <p><%= "#{@order.total_price_currency} #{@order.total_price}" %></p>
+  <p><%= @order.created_at %></p>
+  <p><%= @order.updated_at %></p>
+</div>
+
+
+<h2>Basket Details</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.code %></td>
+        <td><%= product.name %></td>
+        <td><%= "#{product.price_currency} #{product.price}" %></td>
+        <td><%= @order.basket[product.code] %></td>
+        <td><%= link_to 'Show', product_path(product.code, uuid: params[:uuid]) %></td>
+        <td><%= link_to 'Add', add_product_path(uuid: @order.uuid, product_code: product.code), data: { turbo_method: :post } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div>
+  <%= link_to "Back to products", products_path(uuid: @order.uuid) %>
+</div>

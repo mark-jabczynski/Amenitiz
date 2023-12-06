@@ -6,6 +6,10 @@ module Queries
 
     module Scopes
       include Query::Scopes
+
+      def by_uuid(uuid)
+        where(uuid: uuid)
+      end
     end
   end
 end
